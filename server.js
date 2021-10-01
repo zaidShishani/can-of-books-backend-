@@ -15,10 +15,12 @@ const bookModal = require('./BookDB.js');
 
 mongoose.connect(`${process.env.MONGO_SERVER}`);
 
-const getBooksHandler = require("./bookFuncations.js");
+const { getBooksHandler, addBookHandler, deleteBookHandler }= require("./bookFuncations.js");
 
 server.get('/', homeHandler);
 server.get('/getbooks', getBooksHandler);
+server.post('/addBook', addBookHandler);
+server.delete('/deleteBook', deleteBookHandler);
 server.get('*', notFoundHandler);
 
 function homeHandler(req, res) {
